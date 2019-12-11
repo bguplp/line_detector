@@ -19,7 +19,7 @@ import cv2
 
 
 pointcloud_topic = '/kinect2/qhd/points'
-mrcnn_server_uri='localhost:8000'
+mrcnn_server_uri='localhost:8765'
 
 camera_transform_name= "kinect2_depth_frame"
 world_transform_name="map"
@@ -38,8 +38,14 @@ class objects_scanner:
 
     def detect(self, pc2_message, desired_classes=[]):
         image = self.pointcloud2_to_rgb(pc2_message)
-        masks = self.find_objects_in_image(image, desired_classes)
-        positions = [self.get_object_position(pc2_message, mask) for mask in masks]        
+        masks = self.find_objects_in_image(image, desired_classes) 
+        positions = []      
+        for mask in masks:
+            point = self.get_object_position(pc2_message, mask)
+            if point is not None:
+                positions.append(point)
+            else:
+                rospy.logwarn("point is: "+ str(point))
 
         return positions
 
@@ -67,21 +73,26 @@ class objects_scanner:
 
     def get_object_position(self, cloud, object_mask):
         points = self.mask_to_points(cloud, object_mask)
-        points = self.normalize_coordinates(points)
+        if points.shape != (0,):
+            points = self.normalize_coordinates(points)
 
-        # first axis is col axis -> left-right axis -> y axis
-        # also ROS expects this axis to be where -inf is at the right, so flip the sign of the coordinate
-        y = np.mean(points[:, 0])
-        y = -y
+            # first axis is col axis -> left-right axis -> y axis
+            # also ROS expects this axis to be where -inf is at the right, so flip the sign of the coordinate
+            y = np.mean(points[:, 0])
+            y = -y
 
-        # second axis is row axis -> up-down axis -> z axis
-        z = np.mean(points[:, 1])
+            # second axis is row axis -> up-down axis -> z axis
+            z = np.mean(points[:, 1])
 
-        # third axis is depth axis -> forward-backward axis -> x axis
-        x = np.mean(points[:, 2])
+            # third axis is depth axis -> forward-backward axis -> x axis
+            x = np.mean(points[:, 2])
 
-        point = [x, y, z]
-        return point
+            point = [x, y, z]
+            return point
+        else:            
+            rospy.logwarn("points.shape is: "+ str(points.shape))
+            point = None
+            return point
 
     def mask_to_points(self, cloud, mask):
         pixles = np.argwhere(mask).tolist()
@@ -93,6 +104,7 @@ class objects_scanner:
 
     def normalize_coordinates(self, coordinates):
         # remove (0,0,0)
+        #rospy.logwarn("coordinates:\n"+ str(coordinates))
         coordinates = coordinates[np.any(coordinates != 0, axis=1)]
 
         coordinates = self.normalize_coordinates_by_axis(coordinates, 0)
@@ -138,14 +150,16 @@ def genrerate_respone(coordinates, time):
     response.header.stamp = time
     response.header.frame_id = camera_transform_name
 
-    response.object_coordinates = [Point(coordinate[0], coordinate[1], coordinate[2]) for coordinate in coordinates]
+    if len(coordinates) > 1:
+        if type(coordinates[0]) is list:
+            response.object_coordinates = [Point(coordinate[0], coordinate[1], coordinate[2]) for coordinate in coordinates]
+        else:
+            rospy.logerr("coordinates[0] type is: "+ str(type(coordinates[0]))+ " not enough objects have been detected on the queue")
+    else:
+        rospy.logerr("coordinates length is: "+ str(len(coordinates))+ " not enough objects have been detected on the queue")
 
     return response
 
 
 if __name__ == "__main__":
     detection_server()
-
-
-
-                                                                                                                                                                                                                                                        
