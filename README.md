@@ -8,3 +8,40 @@ To learn more, please refer to the wiki: https://github.com/EyalSeg/line_detecto
 ![After ](https://user-images.githubusercontent.com/10437548/69559435-9ebcf380-0fb2-11ea-8f36-50b736af8c79.png)
 
 
+## Runing
+In order to run line detector, use the following commands in this order:
+
+open new terminal:
+```
+cd ~/catkin_ws/src/line_detection/depthCamera/src
+python3 detection_server.py
+```
+
+for gazebo simultion, use in new terminal:
+```
+source /home/tal/catkin_ws/devel/setup.bash
+roslaunch armadillo2 armadillo2.launch gazebo:=true kinect:=true world_name:="/home/tal/catkin_ws/src/line_detection/line_detector/coffee_line.world" map:="/home/tal/catkin_ws/src/line_detection/line_detector/coffee_line.yaml" have_map:=true move_base:=true amcl:=true lidar:=true
+```
+
+for the real armadillo2 robot, use in new terminal:
+```
+roslaunch armadillo2 armadillo2.launch kinect:=true map:="<path_to_map>/<map_file_name.ymal>" have_map:=true move_base:=true amcl:=true lidar:=true
+```
+
+in new terminal:
+```
+source /home/tal/catkin_ws/devel/setup.bash
+rosrun line_detector objects_scanning_service.py
+```
+
+in new terminal:
+```
+source /home/tal/catkin_ws/devel/setup.bash
+rosrun line_detector line_detection_service.py
+```
+
+in new terminal:
+```
+source /home/tal/catkin_ws/devel/setup.bash
+rosrun line_detector demo.py
+```
