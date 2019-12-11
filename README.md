@@ -11,7 +11,7 @@ To learn more, please refer to the wiki: https://github.com/EyalSeg/line_detecto
 ## Runing
 In order to run line detector, use the following commands in the following order:
 
-open a new terminal:
+open a new terminal and run this command:
 ```
 $ cd ~/catkin_ws/src/line_detection/depthCamera/src
 $ python3 detection_server.py
@@ -40,7 +40,7 @@ $ source /home/tal/catkin_ws/devel/setup.bash
 $ rosrun line_detector line_detection_service.py
 ```
 
-after all the nodes have opened and the required queue is in the camera frame, open a new terminal and use this command:
+after all the nodes are running and the required queue is in the camera frame, open a new terminal and use this command:
 ```
 $ source /home/tal/catkin_ws/devel/setup.bash
 $ rosrun line_detector demo.py
