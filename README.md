@@ -8,10 +8,23 @@ To learn more, please refer to the wiki: https://github.com/EyalSeg/line_detecto
 ![After ](https://user-images.githubusercontent.com/10437548/69559435-9ebcf380-0fb2-11ea-8f36-50b736af8c79.png)
 
 
+## Dependencies
+* ubuntu 16.04 LTS
+* ROS kinect
+* CUDA 9.2
+* tensorflow 1.*
+* python 2.7.*
+* python 3.5.* or above
+
+The following python packges are required:
+* python scipy
+
+## installation
+
 ## Runing
 In order to run line detector, use the following commands in the following order:
 
-open a new terminal and run this command:
+open a new terminal and run detection_server.py like this:
 ```
 $ cd ~/catkin_ws/src/line_detection/depthCamera/src
 $ python3 detection_server.py
@@ -28,19 +41,19 @@ for the real armadillo2 robot, use the following command in a new terminal:
 $ roslaunch armadillo2 armadillo2.launch kinect:=true map:="<path_to_map>/<map_file_name.ymal>" have_map:=true move_base:=true amcl:=true lidar:=true
 ```
 
-open a new terminal and use this command:
+run objects_scanning_service.py in a new terminal with the folowing comand: 
 ```
 $ source /home/tal/catkin_ws/devel/setup.bash
 $ rosrun line_detector objects_scanning_service.py
 ```
 
-open a new terminal and use this command:
+run line_detection_service.py in a new terminal with the folowing comand: 
 ```
 $ source /home/tal/catkin_ws/devel/setup.bash
 $ rosrun line_detector line_detection_service.py
 ```
 
-after all the nodes are running and the required queue is in the camera frame, open a new terminal and use this command:
+after all the nodes are running and the required queue is in the camera frame, open a new terminal and run demo.py in a new terminal with the folowing comand:
 ```
 $ source /home/tal/catkin_ws/devel/setup.bash
 $ rosrun line_detector demo.py
