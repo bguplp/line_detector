@@ -9,39 +9,39 @@ To learn more, please refer to the wiki: https://github.com/EyalSeg/line_detecto
 
 
 ## Runing
-In order to run line detector, use the following commands in this order:
+In order to run line detector, use the following commands in the following order:
 
-open new terminal:
+open a new terminal:
 ```
-cd ~/catkin_ws/src/line_detection/depthCamera/src
-python3 detection_server.py
-```
-
-for gazebo simultion, use in new terminal:
-```
-source /home/tal/catkin_ws/devel/setup.bash
-roslaunch armadillo2 armadillo2.launch gazebo:=true kinect:=true world_name:="/home/tal/catkin_ws/src/line_detection/line_detector/coffee_line.world" map:="/home/tal/catkin_ws/src/line_detection/line_detector/coffee_line.yaml" have_map:=true move_base:=true amcl:=true lidar:=true
+$ cd ~/catkin_ws/src/line_detection/depthCamera/src
+$ python3 detection_server.py
 ```
 
-for the real armadillo2 robot, use in new terminal:
+for the gazebo simulation, use this command in a new terminal:
 ```
-roslaunch armadillo2 armadillo2.launch kinect:=true map:="<path_to_map>/<map_file_name.ymal>" have_map:=true move_base:=true amcl:=true lidar:=true
-```
-
-in new terminal:
-```
-source /home/tal/catkin_ws/devel/setup.bash
-rosrun line_detector objects_scanning_service.py
+$ source /home/tal/catkin_ws/devel/setup.bash
+$ roslaunch armadillo2 armadillo2.launch gazebo:=true kinect:=true world_name:="/home/tal/catkin_ws/src/line_detection/line_detector/coffee_line.world" map:="/home/tal/catkin_ws/src/line_detection/line_detector/coffee_line.yaml" have_map:=true move_base:=true amcl:=true lidar:=true
 ```
 
-in new terminal:
+for the real armadillo2 robot, use the following command in a new terminal:
 ```
-source /home/tal/catkin_ws/devel/setup.bash
-rosrun line_detector line_detection_service.py
+$ roslaunch armadillo2 armadillo2.launch kinect:=true map:="<path_to_map>/<map_file_name.ymal>" have_map:=true move_base:=true amcl:=true lidar:=true
 ```
 
-in new terminal:
+open a new terminal and use this command:
 ```
-source /home/tal/catkin_ws/devel/setup.bash
-rosrun line_detector demo.py
+$ source /home/tal/catkin_ws/devel/setup.bash
+$ rosrun line_detector objects_scanning_service.py
+```
+
+open a new terminal and use this command:
+```
+$ source /home/tal/catkin_ws/devel/setup.bash
+$ rosrun line_detector line_detection_service.py
+```
+
+after all the nodes have opened and the required queue is in the camera frame, open a new terminal and use this command:
+```
+$ source /home/tal/catkin_ws/devel/setup.bash
+$ rosrun line_detector demo.py
 ```
