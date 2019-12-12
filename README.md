@@ -1,7 +1,7 @@
 # line_detector
 A ros package for detecting lines and queues, and getting a position at the line's end.
 
-To learn more, please refer to the [wiki](https://github.com/EyalSeg/line_detector/wiki).
+To learn more, please refer to [EyalSeg/line_detector/wiki](https://github.com/EyalSeg/line_detector/wiki).
 
 
 ![Before ](https://user-images.githubusercontent.com/10437548/69551704-d1acba80-0fa5-11ea-925a-df94bf7a8c64.png)
