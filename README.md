@@ -15,9 +15,13 @@ To learn more, please refer to the [wiki](https://github.com/EyalSeg/line_detect
 * python 2.7.*
 * python 3.5.* or above
 
-The following python packges are required:
+The following python3 packges are required:
 * tensorflow 1.*
 * Keras
+* numpy
+* skimage
+
+The following python2 packges are required:
 * OpenCV
 * scipy
 * numpy
