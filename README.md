@@ -1,7 +1,7 @@
 # line_detector
 A ros package for detecting lines and queues, and getting a position at the line's end.
 
-To learn more, please refer to the wiki: https://github.com/EyalSeg/line_detector/wiki
+To learn more, please refer to the [wiki](https://github.com/EyalSeg/line_detector/wiki).
 
 
 ![Before ](https://user-images.githubusercontent.com/10437548/69551704-d1acba80-0fa5-11ea-925a-df94bf7a8c64.png)
@@ -12,12 +12,15 @@ To learn more, please refer to the wiki: https://github.com/EyalSeg/line_detecto
 * ubuntu 16.04 LTS
 * ROS kinect
 * CUDA 9.2
-* tensorflow 1.*
 * python 2.7.*
 * python 3.5.* or above
 
 The following python packges are required:
-* python scipy
+* tensorflow 1.*
+* OpenCV
+* scipy
+* numpy
+* MaskRcnnDetector
 
 ## installation
 
