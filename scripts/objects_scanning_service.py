@@ -45,7 +45,7 @@ class objects_scanner:
             if point is not None:
                 positions.append(point)
             else:
-                rospy.logwarn("point is: "+ str(point))
+                rospy.logwarn("warning in object_scanning_service.py " + "point is: "+ str(point))
 
         return positions
 
@@ -90,7 +90,7 @@ class objects_scanner:
             point = [x, y, z]
             return point
         else:            
-            rospy.logwarn("points.shape is: "+ str(points.shape))
+            rospy.logwarn("warning in object_scanning_service.py " + "points.shape is: "+ str(points.shape))
             point = None
             return point
 
@@ -154,9 +154,9 @@ def genrerate_respone(coordinates, time):
         if type(coordinates[0]) is list:
             response.object_coordinates = [Point(coordinate[0], coordinate[1], coordinate[2]) for coordinate in coordinates]
         else:
-            rospy.logerr("coordinates[0] type is: "+ str(type(coordinates[0]))+ " not enough objects have been detected on the queue")
+            rospy.logerr("error in object_scanning_service.py " + "coordinates[0] type is: "+ str(type(coordinates[0]))+ " not enough objects have been detected on the queue")
     else:
-        rospy.logerr("coordinates length is: "+ str(len(coordinates))+ " not enough objects have been detected on the queue")
+        rospy.logerr("error in object_scanning_service.py " + "coordinates length is: "+ str(len(coordinates))+ " not enough objects have been detected on the queue")
 
     return response
 

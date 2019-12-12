@@ -60,6 +60,7 @@ add_service_files(
   FILES
   ObjectDetection.srv
   NextPositionInLineService.srv
+  ser_message.srv
 )
 
 ## Generate actions in the 'action' folder

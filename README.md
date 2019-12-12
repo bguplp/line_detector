@@ -22,7 +22,7 @@ The following python3 packges are required:
 * skimage
 
 The following python2 packges are required:
-* OpenCV
+* OpenCV2
 * scipy
 * numpy
 
@@ -68,7 +68,7 @@ $ python3 detection_server.py
 for the gazebo simulation, use this command in a new terminal:
 ```
 $ source ~/catkin_ws/devel/setup.bash
-$ roslaunch armadillo2 armadillo2.launch gazebo:=true kinect:=true world_name:="~/catkin_ws/src/line_detection/line_detector/coffee_line.world" map:="~/catkin_ws/src/line_detection/line_detector/coffee_line.yaml" have_map:=true move_base:=true amcl:=true lidar:=true
+$ roslaunch armadillo2 armadillo2.launch gazebo:=true kinect:=true world_name:="`rospack find line_detector`/coffee_line.world" map:="`rospack find line_detector`/coffee_line.yaml" have_map:=true move_base:=true amcl:=true lidar:=true
 ```
 
 for the real armadillo2 robot, use the following command in a new terminal:
@@ -76,20 +76,14 @@ for the real armadillo2 robot, use the following command in a new terminal:
 $ roslaunch armadillo2 armadillo2.launch kinect:=true map:="<path_to_map>/<map_file_name.ymal>" have_map:=true move_base:=true amcl:=true lidar:=true
 ```
 
-run objects_scanning_service.py in a new terminal with the folowing comand: 
+launch line_end_detection.launch in a new terminal with the folowing comand: 
 ```
 $ source ~/catkin_ws/devel/setup.bash
-$ rosrun line_detector objects_scanning_service.py
+$ roslaunch line_detector line_end_detection.launch
 ```
 
-run line_detection_service.py in a new terminal with the folowing comand: 
+after all the nodes are running and the required queue is in the camera frame, open a new terminal and call the line_end_detection ros service in a new terminal with the folowing comand:
 ```
 $ source ~/catkin_ws/devel/setup.bash
-$ rosrun line_detector line_detection_service.py
-```
-
-after all the nodes are running and the required queue is in the camera frame, open a new terminal and run demo.py in a new terminal with the folowing comand:
-```
-$ source ~/catkin_ws/devel/setup.bash
-$ rosrun line_detector demo.py
+$ rosservice call /line_end_detection {}
 ```

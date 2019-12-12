@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<launch>
+<node pkg="line_detector" type="objects_scanning_service.py" name="objects_scanning_service" output="screen"/>
+<node pkg="line_detector" type="line_detection_service.py" name="line_detection_service" output="screen"/>
+<node pkg="line_detector" type="demo.py" name="queue_end_detection" output="screen"/>
+</launch>
