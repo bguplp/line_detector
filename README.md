@@ -11,7 +11,7 @@ To learn more, please refer to the [wiki](https://github.com/EyalSeg/line_detect
 ## Dependencies
 * ubuntu 16.04 LTS
 * ROS kinect
-* CUDA 9.2
+* CUDA 9.*
 * python 2.7.*
 * python 3.5.* or above
 
