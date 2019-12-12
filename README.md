@@ -28,6 +28,7 @@ The following python packges are required:
 First of all, follow [RoboTiCan's installation tutorial](http://wiki.ros.org/armadillo2/Tutorials/Installation) in order to install armadillo2 software.
 
 Then download and install an Image Detection Server. In this project we have used an implementation over Mask RCNN which you can clone and install from [here](https://github.com/bguplp/depthCamera). to do so, follow the instractions below.
+
 open a new terminal and use the following commands:
 ```
 $ mkdir ~/catkin_ws/src/line_detection
