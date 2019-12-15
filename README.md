@@ -31,7 +31,7 @@ The following python2 packges are required:
 
 First of all, follow [RoboTiCan's installation tutorial](http://wiki.ros.org/armadillo2/Tutorials/Installation) in order to install armadillo2 software.
 
-Now in order to make armadillo's software compatible with this project, please go to armadillo and anywhere you can find this line `add_definitions( <....> )` add this line `add_definitions( -fexceptions )` underneath it. I found this line 3 times, In line numbers 46, 72, 128.
+Now in order to make armadillo's software compatible with this project, please open the file `~/catkin_ws/src/armadillo/armadillo2_utils/iai_kinect2/kinect2_registration/CMakeLists.txt` and anywhere you can find this line `add_definitions( <....> )` add this line `add_definitions( -fexceptions )` underneath it. I have found this line 3 times, In lines 46, 72, 127.
 
 after the changes it should look like that:
 
@@ -61,7 +61,7 @@ $ cd depthCamera/Mask_RCNN-master
 $ pip3 install -r requirements.txt
 $ python3 setup.py install
 ```
-make sure you have tensorflow 1.*, you can check your tensorflow version by running this command in the terminal:
+make sure you have tensorflow 1.*, you can check your current tensorflow version by running this command in the terminal:
 ```bash
 $ python3 -c 'import tensorflow as tf; print("tensorflow version:", tf.VERSION)'
 ```
