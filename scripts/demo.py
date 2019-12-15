@@ -34,7 +34,7 @@ def queue_end_detection_func(req):
     listener = tf2_ros.TransformListener(tfBuffer)
 
     print("submitting request")
-    result = line_srv(0.8, "ltr")
+    result = line_srv(0.9, "ltr")
     print("got it!")
     print(result.next_position)
 

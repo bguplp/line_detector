@@ -31,6 +31,25 @@ The following python2 packges are required:
 
 First of all, follow [RoboTiCan's installation tutorial](http://wiki.ros.org/armadillo2/Tutorials/Installation) in order to install armadillo2 software.
 
+Now in order to make armadillo's software compatible with this project, please go to armadillo and anywhere you can find this line `add_definitions( <....> )` add this line `add_definitions( -fexceptions )` underneath it. I found this line 3 times, In line numbers 46, 72, 128.
+
+after the changes it should look like that:
+
+```txt
+  add_definitions(-DDEPTH_REG_CPU)
+  add_definitions( -fexceptions )
+```
+
+```txt
+  add_definitions(-DDEPTH_REG_OPENCL)
+  add_definitions( -fexceptions )
+```
+
+```txt
+  add_definitions(-DREG_OPENCL_FILE="${PROJECT_SOURCE_DIR}/src/depth_registration.cl")
+  add_definitions( -fexceptions )
+```
+
 Then download and install an Image Detection Server. In this project we have used an implementation over [Mask RCNN](https://github.com/matterport/Mask_RCNN) which you can clone and install from [here](https://github.com/bguplp/depthCamera). to do so, follow the instractions below.
 
 open a new terminal and use the following commands:
