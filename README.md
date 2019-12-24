@@ -56,7 +56,7 @@ $ cd ~/catkin_ws
 $ source ~/catkin_ws/devel/setup.bash
 $ catkin_make
 ```
-we have used 3D Gazebo human Models (3DGEMS) from [this site](http://data.nvision2.eecs.yorku.ca/3DGEMS/). you can use the following commands to download the folder we need to your `~/.gazebo/models/` directory: 
+we have used 3D Gazebo human Models (3DGEMS) from [here](http://data.nvision2.eecs.yorku.ca/3DGEMS/). you can use the following commands to download the folder we need to your `~/.gazebo/models/` directory: 
 ```bash
 $ wget  -P ~/Downloads/ "http://data.nvision2.eecs.yorku.ca/3DGEMS/data/miscellaneous.tar.gz"
 $ cd ~/.gazebo/models
