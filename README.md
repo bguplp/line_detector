@@ -41,12 +41,17 @@ $ mkdir ~/catkin_ws/src/line_detection
 $ cd ~/catkin_ws/src/line_detection
 $ git clone https://github.com/bguplp/depthCamera.git
 $ cd depthCamera/Mask_RCNN-master
-$ pip3 install -r requirements.txt
+$ python3 -m pip install -r requirements.txt
 $ python3 setup.py install
 ```
 make sure you have tensorflow 1.*, you can check your current tensorflow version by running this command in the terminal:
+for tensorflow 1.*
 ```bash
 $ python3 -c 'import tensorflow as tf; print("tensorflow version:", tf.VERSION)'
+```
+for tensorflow 2.*
+```bash
+$ python3 -c 'import tensorflow as tf; print("tensorflow version:", tf._version_)'
 ```
 now clone line_detector package into your `~/catkin_ws/src/line_detection` and compile it, like that:
 ```bash
