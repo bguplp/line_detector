@@ -35,7 +35,7 @@ Now in order to make armadillo's software compatible with this project, please o
 
 Then download and install an Image Detection Server. In this project we have used an implementation over [Mask RCNN](https://github.com/matterport/Mask_RCNN) which you can clone and install from [here](https://github.com/bguplp/depthCamera). to do so, follow the instractions below.
 
-open a new terminal and use the following commands:
+open new terminal and use the following commands:
 ```bash
 $ mkdir ~/catkin_ws/src/line_detection
 $ cd ~/catkin_ws/src/line_detection
@@ -56,35 +56,43 @@ $ cd ~/catkin_ws
 $ source ~/catkin_ws/devel/setup.bash
 $ catkin_make
 ```
+we have used 3D Gazebo human Models (3DGEMS) from [this site](http://data.nvision2.eecs.yorku.ca/3DGEMS/). you can use the following commands to download the folder we need to your `~/.gazebo/models/` directory: 
+```bash
+$ wget  -P ~/Downloads/ "http://data.nvision2.eecs.yorku.ca/3DGEMS/data/miscellaneous.tar.gz"
+$ cd ~/.gazebo/models
+$ tar -xvzf ~/Downloads/miscellaneous.tar.gz 
+$ cd miscellaneous
+$ cp -a human_female_1 human_female_1_1 human_female_2 human_female_3 human_female_4 human_male_1 human_male_1_1 human_male_2 human_male_3 human_male_4 ~/.gazebo/models/
+```
 
 
 ## Runing
 In order to run line detector, use the following commands in the following order:
 
-open a new terminal and run detection_server.py like this:
+open new terminal and run detection_server.py like this:
 ```bash
 $ cd ~/catkin_ws/src/line_detection/depthCamera/src
 $ python3 detection_server.py
 ```
 
-for the gazebo simulation, use this command in a new terminal:
+for the gazebo simulation, use this command in new terminal:
 ```bash
 $ source ~/catkin_ws/devel/setup.bash
 $ roslaunch armadillo2 armadillo2.launch gazebo:=true kinect:=true world_name:="`rospack find line_detector`/coffee_line.world" map:="`rospack find line_detector`/coffee_line.yaml" have_map:=true move_base:=true amcl:=true lidar:=true
 ```
 
-for the real armadillo2 robot, use the following command in a new terminal:
+for the real armadillo2 robot, use the following command in new terminal:
 ```bash
 $ roslaunch armadillo2 armadillo2.launch kinect:=true map:="<path_to_map>/<map_file_name.ymal>" have_map:=true move_base:=true amcl:=true lidar:=true
 ```
 
-launch line_end_detection.launch in a new terminal with the folowing comand: 
+launch line_end_detection.launch in new terminal with the folowing comand: 
 ```bash
 $ source ~/catkin_ws/devel/setup.bash
 $ roslaunch line_detector line_end_detection.launch
 ```
 
-after all the nodes are running and the required queue is in the camera frame, open a new terminal and call the line_end_detection ros service with the folowing comand:
+after all the nodes are running and the required queue is in the camera frame, open new terminal and call the line_end_detection ros service with the folowing comand:
 ```bash
 $ source ~/catkin_ws/devel/setup.bash
 $ rosservice call /line_end_detection {}
