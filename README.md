@@ -19,10 +19,10 @@ The following python3 packges are required:
 * tensorflow 1.*
 * Keras
 * numpy
-* skimage
+* scikit-image
 
 The following python2 packges are required:
-* OpenCV2
+* OpenCV
 * scipy
 * numpy
 
