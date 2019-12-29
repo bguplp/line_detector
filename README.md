@@ -20,6 +20,8 @@ The following python3 packges are required:
 * Keras
 * numpy
 * scikit-image
+* pycocotools
+* pip 9.0.1 or above
 
 The following python2 packges are required:
 * OpenCV
@@ -31,7 +33,10 @@ The following python2 packges are required:
 
 First of all, follow [RoboTiCan's installation tutorial](http://wiki.ros.org/armadillo2/Tutorials/Installation) in order to install armadillo2 software.
 
-Now in order to make armadillo's software compatible with this project, please open the file `~/catkin_ws/src/armadillo/armadillo2_utils/iai_kinect2/kinect2_registration/CMakeLists.txt` and add this line `add_definitions( -fexceptions )` in the end of the file.
+Now in order to make armadillo's software compatible with this project, please open the file `~/catkin_ws/src/armadillo/armadillo2_utils/iai_kinect2/kinect2_registration/CMakeLists.txt` and add this line `add_definitions( -fexceptions )` at the end of the file.
+```bash
+echo -e "\nadd_definitions( -fexceptions )" >> ~/catkin_ws/src/armadillo/armadillo2_utils/iai_kinect2/kinect2_registration/CMakeLists.txt
+```
 
 Then download and install an Image Detection Server. In this project we have used an implementation over [Mask RCNN](https://github.com/matterport/Mask_RCNN) which you can clone and install from [here](https://github.com/bguplp/depthCamera). to do so, follow the instractions below.
 
@@ -51,7 +56,7 @@ $ python3 -c 'import tensorflow as tf; print("tensorflow version:", tf.VERSION)'
 ```
 for tensorflow 2.*
 ```bash
-$ python3 -c 'import tensorflow as tf; print("tensorflow version:", tf._version_)'
+$ python3 -c 'import tensorflow as tf; print("tensorflow version:", tf.__version__)'
 ```
 now clone line_detector package into your `~/catkin_ws/src/line_detection` and compile it, like that:
 ```bash
