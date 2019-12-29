@@ -47,6 +47,7 @@ $ python3 -m pip install -r requirements.txt
 $ python3 setup.py install
 ```
 Make sure you have tensorflow 1.*, you can check your current tensorflow version by running this command in the terminal:
+
 For tensorflow 1.*
 ```bash
 $ python3 -c 'import tensorflow as tf; print("tensorflow version:", tf.VERSION)'
