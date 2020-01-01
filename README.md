@@ -86,7 +86,7 @@ $ python3 detection_server.py
 For the gazebo simulation, use this command in new terminal:
 ```bash
 $ source ~/catkin_ws/devel/setup.bash
-$ roslaunch armadillo2 armadillo2.launch gazebo:=true kinect:=true world_name:="`rospack find line_detector`/coffee_line.world" map:="`rospack find line_detector`/coffee_line.yaml" have_map:=true move_base:=true amcl:=true lidar:=true
+$ roslaunch armadillo2 armadillo2.launch gazebo:=true kinect:=true world_name:="`rospack find line_detector`/coffee_line.world" map:="`rospack find line_detector`/coffee_line.yaml" have_map:=true move_base:=true amcl:=true lidar:=true x:="1.0" y:="1.0" Y:="1.0"
 ```
 For the real armadillo2 robot, use the following command in new terminal:
 ```bash
