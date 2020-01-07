@@ -72,7 +72,7 @@ $ tar -xvzf ~/Downloads/miscellaneous.tar.gz
 $ cd miscellaneous
 $ cp -a human_female_1 human_female_1_1 human_female_2 human_female_3 human_female_4 human_male_1 human_male_1_1 human_male_2 human_male_3 human_male_4 ~/.gazebo/models/
 $ cd ..
-$ rm -rfv miscellaneous
+$ rm -rv miscellaneous
 ```
 
 ## Runing
