@@ -90,7 +90,7 @@ $ roslaunch armadillo2 armadillo2.launch gazebo:=true kinect:=true world_name:="
 ```
 For the real armadillo2 robot, use the following command in new terminal:
 ```bash
-$ roslaunch armadillo2 armadillo2.launch kinect:=true map:="<path_to_map>/<map_file_name.ymal>" have_map:=true move_base:=true amcl:=true lidar:=true
+$ roslaunch armadillo2 armadillo2.launch kinect:=true move_base:=true gmapping:=true lidar:=true
 ```
 Launch line_end_detection.launch in new terminal with the folowing comand: 
 ```bash
