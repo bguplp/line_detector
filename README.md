@@ -32,7 +32,7 @@ First of all, follow [RoboTiCan's installation tutorial](http://wiki.ros.org/arm
 
 Now in order to make armadillo's software compatible with this project, please open the file `~/catkin_ws/src/armadillo/armadillo2_utils/iai_kinect2/kinect2_registration/CMakeLists.txt` and add this line `add_definitions( -fexceptions )` at the end of the file. You may open a new terminal and use this command:
 ```bash
-$ echo -e "\nadd_definitions( -fexceptions )" >> ~/catkin_ws/src/armadillo/armadillo2_utils/iai_kinect2/kinect2_registration/CMakeLists.txt
+$ grep -qxF 'add_definitions( -fexceptions )' $HOME/catkin_ws/src/armadillo/armadillo2_utils/iai_kinect2/kinect2_registration/CMakeLists.txt || echo -e "\nadd_definitions( -fexceptions )" >> $HOME/catkin_ws/src/armadillo/armadillo2_utils/iai_kinect2/kinect2_registration/CMakeLists.txt
 ```
 
 Then download and install an Image Detection Server. In this project we have used an implementation over [Mask RCNN](https://github.com/matterport/Mask_RCNN) which you can clone and install from [here](https://github.com/bguplp/depthCamera). To do so, follow the instructions below.
