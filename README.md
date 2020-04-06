@@ -102,3 +102,21 @@ After all the nodes are running and the required queue is in the camera frame, o
 $ source ~/catkin_ws/devel/setup.bash
 $ rosservice call /line_end_detection {}
 ```
+##Troubleshoot
+### pip3 upgrade after installation by apt (ubuntu file system)
+```bash
+$ sudo apt install python3-pip
+$ sudo pip3 install --upgrade pip setuptools
+$ sudo apt update&& sudo apt upgrade python-pip
+```
+
+###  ImportError: No module named '_tkinter', please install the python3-tk package
+```bash
+$ sudo apt-get install python3.5-tk
+```
+
+### ImportError: /opt/ros/kinetic/lib/python2.7/dist-packages/cv2.so: undefined symbol: PyCObject_Type
+```bash
+$ cd /opt/ros/kinetic/lib/python2.7/dist-packages/
+$ sudo mv cv2.so cv2_ros.so
+```
