@@ -43,8 +43,9 @@ $ mkdir ~/catkin_ws/src/line_detection
 $ cd ~/catkin_ws/src/line_detection
 $ git clone https://github.com/bguplp/depthCamera.git
 $ cd depthCamera/Mask_RCNN-master
+$ python -m pip install -r requirements_py2.txt
 $ python3 -m pip install -r requirements.txt
-$ python3 setup.py install
+$ python3 setup.py install --user
 ```
 Make sure you have tensorflow 1.*, you can check your current tensorflow version by running this command in the terminal:
 
@@ -121,3 +122,4 @@ $ sudo apt-get install python3.5-tk
 $ cd /opt/ros/kinetic/lib/python2.7/dist-packages/
 $ sudo mv cv2.so cv2_ros.so
 ```
+
