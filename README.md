@@ -129,7 +129,7 @@ Then do:
 ```bash
 sudo update-initramfs -k all -u
 ```
-and ```bash reboot```
+and ```reboot```
 If that's haven't fix the problem, you probably should check your cuda version and consider replacing it to cuda-9.*.
 Or you can try that approach:
 ```bash
