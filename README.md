@@ -46,6 +46,7 @@ cd depthCamera/Mask_RCNN-master
 python -m pip install -r requirements_py2.txt
 python3 -m pip install -r requirements.txt
 python3 setup.py install --user
+sudo apt-get install python3-tk
 ```
 Make sure you have tensorflow 1.*, you can check your current tensorflow version by running this command in the terminal:
 
