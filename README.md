@@ -80,6 +80,8 @@ rm -rv miscellaneous
 ## Runing
 In order to run line detector, use the following commands in the following order:
 
+### python2 http server communication ###
+
 Open new terminal and run detection_server.py like this:
 ```bash
 cd ~/catkin_ws/src/line_detection/depthCamera/src
@@ -104,6 +106,29 @@ After all the nodes are running and the required queue is in the camera frame, o
 source ~/catkin_ws/devel/setup.bash
 rosservice call /line_end_detection {}
 ```
+
+### python3 ROS communication ###
+
+For gazebo simulation, use this command in new terminal:
+```bash
+source ~/catkin_ws/devel/setup.bash
+roslaunch armadillo2 armadillo2.launch gazebo:=true kinect:=true world_name:="`rospack find line_detector`/coffee_line.world" map:="`rospack find line_detector`/coffee_line.yaml" have_map:=true move_base:=true amcl:=true lidar:=true x:="1.0" y:="1.0" Y:="1.0"
+```
+For real armadillo2 robot, use the following command in new terminal:
+```bash
+roslaunch armadillo2 armadillo2.launch kinect:=true move_base:=true gmapping:=true lidar:=true
+```
+Launch line_end_detection.launch in new terminal with the folowing comand: 
+```bash
+source ~/catkin_ws/devel/setup.bash
+roslaunch line_detector line_end_detection_py3.launch
+```
+After all the nodes are running and the required queue is in the camera frame, open new terminal and call the line_end_detection ros service with the folowing comand:
+```bash
+source ~/catkin_ws/devel/setup.bash
+rosservice call /line_end_detection {}
+```
+
 ## Troubleshoot
 
 * pip3 upgrade after installation by apt (ubuntu file system)
