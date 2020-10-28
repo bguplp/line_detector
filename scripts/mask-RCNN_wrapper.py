@@ -16,9 +16,13 @@ from sensor_msgs.msg import CompressedImage
 import cv2
 from sensor_msgs.msg import PointCloud2
 import pandas as pd
+from pathlib import Path
+import sys
 
-global verbose, detector, class_names, pub_res
+global verbose, detector, class_names, pub_res, labels
 pointcloud_topic = '/kinect2/qhd/points'
+path_to_labels = Path(__file__).parent
+labels = pd.read_csv(str(path_to_labels)+'/labels.txt')
 
 class_names = ['BG', 'person', 'bicycle', 'car', 'motorcycle', 'airplane',
             'bus', 'train', 'truck', 'boat', 'traffic light',
@@ -124,24 +128,24 @@ def display_instances(image, boxes, masks, class_ids, class_names,
         color = colors[i]
 
         # Bounding box
-        if not np.any(boxes[i]):
+        # if not np.any(boxes[i]):
             # Skip this instance. Has no bbox. Likely lost in image cropping.
-            continue
-        y1, x1, y2, x2 = boxes[i]
-        if show_bbox:
-            p = patches.Rectangle((x1, y1), x2 - x1, y2 - y1, linewidth=2,
-                                alpha=0.7, linestyle="dashed",
-                                edgecolor=color, facecolor='none')
+            # continue
+        # y1, x1, y2, x2 = boxes[i]
+        # if show_bbox:
+        #     p = patches.Rectangle((x1, y1), x2 - x1, y2 - y1, linewidth=2,
+        #                         alpha=0.7, linestyle="dashed",
+        #                         edgecolor=color, facecolor='none')
             #ax.add_patch(p)
 
         # Label
-        if not captions:
-            class_id = class_ids[i]
-            score = scores[i] if scores is not None else None
-            label = class_names[class_id]
-            caption = "{} {:.3f}".format(label, score) if score else label
-        else:
-            caption = captions[i]
+        # if not captions:
+        #     class_id = class_ids[i]
+        #     score = scores[i] if scores is not None else None
+        #     label = class_names[class_id]
+        #     caption = "{} {:.3f}".format(label, score) if score else label
+        # else:
+            # caption = captions[i]
         #ax.text(x1, y1 + 8, caption,
         #        color='w', size=11, backgroundcolor="none")
 
@@ -155,11 +159,11 @@ def display_instances(image, boxes, masks, class_ids, class_names,
         padded_mask = np.zeros(
             (mask.shape[0] + 2, mask.shape[1] + 2), dtype=np.uint8)
         padded_mask[1:-1, 1:-1] = mask
-        contours = find_contours(padded_mask, 0.5)
-        for verts in contours:
+        # contours = find_contours(padded_mask, 0.5)
+        # for verts in contours:
             # Subtract the padding and flip (y, x) to (x, y)
-            verts = np.fliplr(verts) - 1
-            p = Polygon(verts, facecolor="none", edgecolor=color)
+            # verts = np.fliplr(verts) - 1
+            # p = Polygon(verts, facecolor="none", edgecolor=color)
             #ax.add_patch(p)
     #ax.imshow(masked_image.astype(np.uint8))
     #if auto_show:
@@ -172,17 +176,36 @@ def display_instances(image, boxes, masks, class_ids, class_names,
     pub_res.publish(msg)
 
 def response(body_data):
-    global verbose, detector, class_names
+    global verbose, detector, class_names, labels
     body = body_data
     image = np.array(body['image_array'])
     desired_classes = body["classes"]
     detection_results = detector.detect(image, desired_classes)
-    labels = pd.read_csv('labels.txt')
-    #colors = dict()
-    cls_id = detection_results["class_ids"]
-    for ii in range(len(cls_id)):
-        #colors[cls_id] = (int(random.random()*255), int(random.random()*255), int(random.random()*255))
-        print("detected object:", labels[cls_id[ii]])
+    colors = dict()
+    for cls_id in range(len(np.array(labels))):
+        colors[cls_id] = (int(random.random()*255), int(random.random()*255), int(random.random()*255))
+    # height = image.shape[0]
+    # width = image.shape[1]
+    for i in range(len(detection_results["class_ids"])):
+        cls_id = int(detection_results["class_ids"][i])
+        if cls_id >= 0:          
+            # ymin = int(detection_results["rois"][i, 0] * height)
+            # xmin = int(detection_results["rois"][i, 1] * width)
+            # ymax = int(detection_results["rois"][i, 2] * height)
+            # xmax = int(detection_results["rois"][i, 3] * width)
+
+            # font                   = cv2.FONT_HERSHEY_SIMPLEX
+            # bottomLeftCornerOfText = (xmin,ymin + 20)
+            # fontScale              = 1
+            # fontColor              =colors[cls_id]
+            # lineType               = 2
+            print ("label num ",str(i) ,": ", str(labels.iloc[cls_id][0]))
+            # image = cv2.putText(image,str(labels.iloc[cls_id][0]), 
+            #         bottomLeftCornerOfText, 
+            #         font, 
+            #         fontScale,
+            #         fontColor,
+            #         lineType)
     display_instances(image, detection_results["rois"], detection_results["masks"], detection_results["class_ids"], class_names, detection_results["scores"])
 
 def pointcloud2_to_rgb(pc):
