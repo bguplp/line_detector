@@ -131,6 +131,8 @@ rosservice call /line_end_detection {}
 
 ## Troubleshoot
 
+* I recommend to use [this](https://github.com/TalFeiner/bash_tools/blob/main/nvidia-410_cuda-10.0_cudnn-7.6.0_setup.sh) bash script to install nvidia driver, cuda, cudnn. It can solve lots of problems for you.
+
 * pip3 upgrade after installation by apt (ubuntu file system)
 ```bash
 sudo apt install python3-pip
@@ -153,7 +155,7 @@ sudo mv cv2.so cv2_ros.so
 Install Cudnn, my recommended installation is [here](https://askubuntu.com/a/767270).
 Then do:
 ```bash
-sudo update-initramfs -k all -u
+sudo update-initramfs -u
 ```
 and ```reboot```
 If that's haven't fix the problem, you probably should check your cuda version and consider replacing it to cuda-9.*.
